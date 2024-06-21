@@ -1,0 +1,64 @@
+﻿<UserControl
+    x:Class="VolumeControlSystem.UserControls.TextEnterUserControl"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:base="clr-namespace:VolumeControlSystem.UserControls"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    x:Name="TextEnterUC"
+    d:DataContext="{d:DesignInstance Type=base:TextEnterUserControl}"
+    d:DesignHeight="450"
+    d:DesignWidth="800"
+    mc:Ignorable="d">
+    <UserControl.Resources>
+        <Style x:Key="TextEntryValueKey" TargetType="{x:Type TextBox}">
+            <Setter Property="Background" Value="Black" />
+            <Setter Property="Foreground" Value="DeepSkyBlue" />
+            <Setter Property="FontFamily" Value="Consolas" />
+            <Setter Property="FontSize" Value="10" />
+            <Setter Property="Height" Value="25" />
+            <Setter Property="Width" Value="50" />
+            <Setter Property="HorizontalContentAlignment" Value="Center" />
+            <Setter Property="VerticalContentAlignment" Value="Center" />
+        </Style>
+    </UserControl.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="8*" />
+            <RowDefinition Height="2*" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="3*" />
+        </Grid.ColumnDefinitions>
+
+        <StackPanel
+            Grid.Row="1"
+            Grid.Column="2"
+            Width="Auto"
+            Height="Auto"
+            Margin="0,5,0,10"
+            HorizontalAlignment="Left"
+            Orientation="Horizontal">
+            <base:BaseUserControl
+                x:Name="BaseUC"
+                MinWidth="150"
+                SliderValue="{Binding Path=SliderValue, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                Foreground="Red" />
+        </StackPanel>
+
+        <StackPanel
+            Grid.Row="2"
+            Grid.Column="2"
+            Height="Auto"
+            Orientation="Horizontal">
+            <TextBox
+                x:Name="EntryValueTextBox"
+                Margin="45,0,0,0"
+                Style="{StaticResource TextEntryValueKey}"
+                Text="{Binding Path=LocalSliderValue, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, NotifyOnTargetUpdated=True}" />
+        </StackPanel>
+    </Grid>
+</UserControl>
