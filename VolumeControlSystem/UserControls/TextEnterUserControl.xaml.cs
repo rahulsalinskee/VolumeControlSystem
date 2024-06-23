@@ -1,19 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.ComponentModel;
+using System.Text.RegularExpressions;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
-using VolumeControlSystem.SoundControl;
 
 namespace VolumeControlSystem.UserControls
 {
@@ -66,5 +55,54 @@ namespace VolumeControlSystem.UserControls
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
         #endregion
+
+        private void EntryValueTextBox_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            e.Handled = !IsTextAllowed(e.Text);
+        }
+
+        private void IntegerTextBox_Pasting(object sender, DataObjectPastingEventArgs e)
+        {
+            if (e.DataObject.GetDataPresent(typeof(string)))
+            {
+                string text = (string)e.DataObject.GetData(typeof(string));
+                if (!int.TryParse(text, out _))
+                {
+                    e.CancelCommand();
+                }
+            }
+            else
+            {
+                e.CancelCommand();
+            }
+        }
+
+        private static bool IsTextAllowed(string text)
+        {
+            return Regex.IsMatch(text, @"^?\d+$");
+        }
+
+        private void EntryValueTextBox_PreviewKeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Space)
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void EntryValueTextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            if (int.TryParse(EntryValueTextBox.Text, out int value))
+            {
+                if (value < -80)
+                    EntryValueTextBox.Text = "-80";
+                else if (value > 0)
+                    EntryValueTextBox.Text = "0";
+            }
+            else if (EntryValueTextBox.Text != "-")
+            {
+                EntryValueTextBox.Text = "0";
+            }
+        }
     }
 }

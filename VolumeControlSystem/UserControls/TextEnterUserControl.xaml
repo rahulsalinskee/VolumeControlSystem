@@ -15,19 +15,20 @@
             <Setter Property="Background" Value="Black" />
             <Setter Property="Foreground" Value="DeepSkyBlue" />
             <Setter Property="FontFamily" Value="Consolas" />
-            <Setter Property="FontSize" Value="10" />
+            <Setter Property="FontSize" Value="14" />
             <Setter Property="Height" Value="25" />
             <Setter Property="Width" Value="50" />
+            <Setter Property="BorderBrush" Value="Black" />
+            <Setter Property="BorderThickness" Value="1" />
             <Setter Property="HorizontalContentAlignment" Value="Center" />
             <Setter Property="VerticalContentAlignment" Value="Center" />
         </Style>
     </UserControl.Resources>
+
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="*" />
             <RowDefinition Height="8*" />
-            <RowDefinition Height="2*" />
-            <RowDefinition Height="*" />
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*" />
@@ -41,24 +42,91 @@
             Height="Auto"
             Margin="0,5,0,10"
             HorizontalAlignment="Left"
+            VerticalAlignment="Stretch"
             Orientation="Horizontal">
             <base:BaseUserControl
                 x:Name="BaseUC"
                 MinWidth="150"
-                SliderValue="{Binding Path=SliderValue, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                Foreground="Red" />
+                Foreground="Red"
+                IsEnabled="{Binding ElementName=EnableDisable, Path=IsChecked}"
+                SliderValue="{Binding Path=SliderValue, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
         </StackPanel>
 
         <StackPanel
-            Grid.Row="2"
+            Grid.Row="1"
             Grid.Column="2"
             Height="Auto"
+            Margin="50,0,0,30"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Bottom"
             Orientation="Horizontal">
             <TextBox
                 x:Name="EntryValueTextBox"
-                Margin="45,0,0,0"
+                DataObject.Pasting="IntegerTextBox_Pasting"
+                IsEnabled="{Binding ElementName=EnableDisable, Path=IsChecked}"
+                PreviewKeyDown="EntryValueTextBox_PreviewKeyDown"
+                PreviewTextInput="EntryValueTextBox_PreviewTextInput"
                 Style="{StaticResource TextEntryValueKey}"
-                Text="{Binding Path=LocalSliderValue, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, NotifyOnTargetUpdated=True}" />
+                Text="{Binding Path=LocalSliderValue, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, NotifyOnTargetUpdated=True}"
+                TextChanged="EntryValueTextBox_TextChanged" />
+        </StackPanel>
+
+        <StackPanel
+            Name="EnableDisableToggleButtonStackPanel"
+            Grid.Row="1"
+            Grid.Column="2"
+            Height="Auto"
+            Margin="10,50,0,0"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Top"
+            Orientation="Horizontal">
+            <ToggleButton
+                x:Name="EnableDisable"
+                Width="10"
+                Height="10"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center"
+                HorizontalContentAlignment="Center"
+                VerticalContentAlignment="Center"
+                Grid.ZIndex="1"
+                IsChecked="True">
+                <ToggleButton.Template>
+                    <ControlTemplate TargetType="ToggleButton">
+                        <StackPanel>
+                            <Border BorderBrush="DeepSkyBlue" CornerRadius="0.5">
+                                <Border.Effect>
+                                    <DropShadowEffect
+                                        BlurRadius="10"
+                                        Direction="270"
+                                        ShadowDepth="2"
+                                        Color="DeepSkyBlue" />
+                                </Border.Effect>
+                                <Border.Background>
+                                    <LinearGradientBrush StartPoint="1, 1" EndPoint="10, 10">
+                                        <GradientStop Offset="1" Color="#312f30" />
+                                    </LinearGradientBrush>
+                                </Border.Background>
+                                <Rectangle
+                                    x:Name="Rectangle"
+                                    Width="10"
+                                    Height="10"
+                                    Fill="DeepSkyBlue"
+                                    Stroke="Black"
+                                    StrokeThickness="1" />
+                            </Border>
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+                        </StackPanel>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsChecked" Value="False">
+                                <Setter TargetName="Rectangle" Property="Fill" Value="Red" />
+                                <Setter TargetName="Rectangle" Property="Stroke" Value="Black" />
+                                <Setter TargetName="Rectangle" Property="StrokeThickness" Value="1" />
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </ToggleButton.Template>
+                <TextBlock FontSize="10" Foreground="Black" />
+            </ToggleButton>
         </StackPanel>
     </Grid>
 </UserControl>

@@ -9,8 +9,10 @@
     Title="MainWindow"
     Width="800"
     Height="450"
+    WindowState="Maximized"
     mc:Ignorable="d">
     <Grid>
-        <enableDisable:EnableDisableUserControl x:Name="enableDisableUserControl" />
+        <!--<enableDisable:EnableDisableUserControl x:Name="enableDisableUserControl" />-->
+        <enableDisable:TextEnterUserControl />
     </Grid>
 </Window>

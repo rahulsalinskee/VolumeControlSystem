@@ -12,7 +12,6 @@
     <UserControl.Resources>
         <Style x:Key="SliderRepeatButton" TargetType="RepeatButton">
             <Setter Property="SnapsToDevicePixels" Value="true" />
-            <Setter Property="OverridesDefaultStyle" Value="true" />
             <Setter Property="IsTabStop" Value="false" />
             <Setter Property="Focusable" Value="false" />
             <Setter Property="Template">
@@ -35,10 +34,10 @@
                 <Setter.Value>
                     <ControlTemplate TargetType="RepeatButton">
                         <Border
-                            Width="15"
+                            Width="8"
                             Background="DarkGray"
                             BorderBrush="DeepSkyBlue"
-                            BorderThickness="15"
+                            BorderThickness="8"
                             SnapsToDevicePixels="True" />
                     </ControlTemplate>
                 </Setter.Value>
@@ -52,11 +51,24 @@
                 <Setter.Value>
                     <ControlTemplate TargetType="Thumb">
                         <Border
-                            Padding="10,35,10,25"
-                            Background="#312f30"
-                            CornerRadius="10">
+                            Width="40"
+                            Margin="0,0,0,-10"
+                            Padding="2,30,2,15"
+                            CornerRadius="7">
+                            <Border.Effect>
+                                <DropShadowEffect
+                                    BlurRadius="10"
+                                    Direction="270"
+                                    ShadowDepth="2"
+                                    Color="Black" />
+                            </Border.Effect>
+                            <Border.Background>
+                                <LinearGradientBrush StartPoint="1, 1" EndPoint="10, 10">
+                                    <GradientStop Offset="1" Color="#312f30" />
+                                </LinearGradientBrush>
+                            </Border.Background>
                             <Rectangle
-                                Width="35"
+                                Width="10"
                                 Height="1"
                                 Fill="DeepSkyBlue" />
                         </Border>
@@ -93,32 +105,64 @@
             <Style.Triggers>
                 <Trigger Property="Orientation" Value="Vertical">
                     <Setter Property="MinWidth" Value="21" />
-                    <Setter Property="MinHeight" Value="104" />
                     <Setter Property="Template" Value="{StaticResource Slider}" />
                 </Trigger>
             </Style.Triggers>
         </Style>
+
+        <Style x:Key="VolumeLabelKey" TargetType="{x:Type Label}">
+            <Setter Property="FontFamily" Value="Consolas" />
+            <Setter Property="FontSize" Value="20" />
+            <Setter Property="Foreground" Value="#EFEFEF" />
+            <Setter Property="VerticalAlignment" Value="Center" />
+            <Setter Property="HorizontalAlignment" Value="Center" />
+            <Setter Property="Height" Value="Auto" />
+            <Setter Property="Width" Value="Auto" />
+            <Setter Property="Content" Value="VOLUME" />
+            <Setter Property="Margin" Value="0,-25,0,0" />
+            <Setter Property="FontStretch" Value="Expanded" />
+        </Style>
     </UserControl.Resources>
 
-    <Grid>
-        <MediaElement x:Name="VolumeController" />
-        <Slider
-            x:Name="VolumeSlider"
-            Width="Auto"
-            Height="Auto"
-            HorizontalAlignment="Center"
-            Background="#312f30"
-            Foreground="Red"
-            IsSnapToTickEnabled="True"
-            Maximum="0"
-            Minimum="-80"
-            Orientation="Vertical"
-            SelectionEnd="-80"
-            SelectionStart="0"
-            Style="{StaticResource Vertical_Slider}"
-            TickFrequency="10"
-            TickPlacement="BottomRight"
-            Ticks="-80,-70,-60,-50,-40,-30,-20,-10, 0"
-            Value="{Binding Path=SliderValue, ElementName=BaseUC, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, NotifyOnTargetUpdated=True}" />
-    </Grid>
+    <Border
+        x:Name="VolumeControlBorder"
+        Width="150"
+        Height="Auto"
+        Padding="0,30,0,30"
+        Background="#312f30"
+        BorderBrush="WhiteSmoke"
+        BorderThickness="2">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="7*" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <Label
+                x:Name="VolumeLabel"
+                Grid.Row="0"
+                Grid.Column="0"
+                Style="{StaticResource VolumeLabelKey}" />
+            <Slider
+                x:Name="VolumeSlider"
+                Grid.Row="1"
+                Grid.Column="0"
+                Width="Auto"
+                Height="Auto"
+                HorizontalAlignment="Center"
+                Background="#515257"
+                Foreground="Red"
+                IsSnapToTickEnabled="True"
+                Maximum="0"
+                Minimum="-80"
+                Orientation="Vertical"
+                SelectionEnd="-80"
+                SelectionStart="0"
+                Style="{StaticResource Vertical_Slider}"
+                TickFrequency="10"
+                TickPlacement="BottomRight"
+                Ticks="-80, -70, -60, -50, -40, -30, -20, -10, 0"
+                Value="{Binding Path=SliderValue, ElementName=BaseUC, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, NotifyOnTargetUpdated=True}" />
+        </Grid>
+    </Border>
 </UserControl>

@@ -1,18 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
-using VolumeControlSystem.SoundControl;
 
 namespace VolumeControlSystem.UserControls
 {
@@ -21,6 +8,19 @@ namespace VolumeControlSystem.UserControls
     /// </summary>
     public partial class BaseUserControl : UserControl
     {
+        public List<int> Ticks =
+        [
+            -80,
+            -70,
+            -60,
+            -50,
+            -40,
+            -30,
+            -20,
+            -10,
+            0
+        ];
+
         public BaseUserControl()
         {
             InitializeComponent();
