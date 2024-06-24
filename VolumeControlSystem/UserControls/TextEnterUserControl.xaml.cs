@@ -84,7 +84,7 @@ namespace VolumeControlSystem.UserControls
 
         private void EntryValueTextBox_PreviewKeyDown(object sender, KeyEventArgs e)
         {
-            if (e.Key == Key.Space)
+            if (e.Key == Key.OemMinus)
             {
                 e.Handled = true;
             }
