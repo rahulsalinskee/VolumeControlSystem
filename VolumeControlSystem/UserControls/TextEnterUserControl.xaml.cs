@@ -66,7 +66,7 @@ namespace VolumeControlSystem.UserControls
             if (e.DataObject.GetDataPresent(typeof(string)))
             {
                 string text = (string)e.DataObject.GetData(typeof(string));
-                if (!int.TryParse(text, out _))
+                if (!IsTextAllowed(text))
                 {
                     e.CancelCommand();
                 }
@@ -79,7 +79,7 @@ namespace VolumeControlSystem.UserControls
 
         private static bool IsTextAllowed(string text)
         {
-            return Regex.IsMatch(text, @"^?\d+$");
+            return Regex.IsMatch(text, @"^-?\d+$");
         }
 
         private void EntryValueTextBox_PreviewKeyDown(object sender, KeyEventArgs e)
@@ -95,14 +95,21 @@ namespace VolumeControlSystem.UserControls
             if (int.TryParse(EntryValueTextBox.Text, out int value))
             {
                 if (value < -80)
-                    EntryValueTextBox.Text = "-80";
+                {
+                    value = -80;
+                }
                 else if (value > 0)
-                    EntryValueTextBox.Text = "0";
+                {
+                    value = 0;
+                }
+
+                LocalSliderValue = value;
             }
-            else if (EntryValueTextBox.Text != "-")
-            {
-                EntryValueTextBox.Text = "0";
-            }
+            //else if (EntryValueTextBox.Text != "-")
+            //{
+            //    LocalSliderValue = 0;
+            //}
+
         }
     }
 }

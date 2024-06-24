@@ -54,12 +54,12 @@
                             Width="40"
                             Margin="0,0,0,-10"
                             Padding="2,30,2,15"
-                            CornerRadius="7">
+                            CornerRadius="6">
                             <Border.Effect>
                                 <DropShadowEffect
-                                    BlurRadius="10"
+                                    BlurRadius="15"
                                     Direction="270"
-                                    ShadowDepth="2"
+                                    ShadowDepth="4"
                                     Color="Black" />
                             </Border.Effect>
                             <Border.Background>
@@ -123,46 +123,52 @@
             <Setter Property="FontStretch" Value="Expanded" />
         </Style>
     </UserControl.Resources>
-
     <Border
-        x:Name="VolumeControlBorder"
-        Width="150"
-        Height="Auto"
-        Padding="0,30,0,30"
-        Background="#312f30"
-        BorderBrush="WhiteSmoke"
-        BorderThickness="2">
-        <Grid>
-            <Grid.RowDefinitions>
-                <RowDefinition Height="*" />
-                <RowDefinition Height="7*" />
-                <RowDefinition Height="*" />
-            </Grid.RowDefinitions>
-            <Label
-                x:Name="VolumeLabel"
-                Grid.Row="0"
-                Grid.Column="0"
-                Style="{StaticResource VolumeLabelKey}" />
-            <Slider
-                x:Name="VolumeSlider"
-                Grid.Row="1"
-                Grid.Column="0"
-                Width="Auto"
-                Height="Auto"
-                HorizontalAlignment="Center"
-                Background="#515257"
-                Foreground="Red"
-                IsSnapToTickEnabled="True"
-                Maximum="0"
-                Minimum="-80"
-                Orientation="Vertical"
-                SelectionEnd="-80"
-                SelectionStart="0"
-                Style="{StaticResource Vertical_Slider}"
-                TickFrequency="10"
-                TickPlacement="BottomRight"
-                Ticks="-80, -70, -60, -50, -40, -30, -20, -10, 0"
-                Value="{Binding Path=SliderValue, ElementName=BaseUC, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, NotifyOnTargetUpdated=True}" />
-        </Grid>
+        x:Name="BaseUserControlBorderOutLine"
+        BorderBrush="#312f30"
+        BorderThickness="2"
+        CornerRadius="2">
+        <Border
+            x:Name="VolumeControlBorder"
+            Width="150"
+            Height="Auto"
+            Padding="0,30,0,30"
+            Background="#312f30"
+            BorderBrush="WhiteSmoke"
+            BorderThickness="2"
+            CornerRadius="8">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="7*" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+                <Label
+                    x:Name="VolumeLabel"
+                    Grid.Row="0"
+                    Grid.Column="0"
+                    Style="{StaticResource VolumeLabelKey}" />
+                <Slider
+                    x:Name="VolumeSlider"
+                    Grid.Row="1"
+                    Grid.Column="0"
+                    Width="Auto"
+                    Height="Auto"
+                    HorizontalAlignment="Center"
+                    Background="#515257"
+                    Foreground="Red"
+                    IsSnapToTickEnabled="True"
+                    Maximum="0"
+                    Minimum="-80"
+                    Orientation="Vertical"
+                    SelectionEnd="-80"
+                    SelectionStart="0"
+                    Style="{StaticResource Vertical_Slider}"
+                    TickFrequency="10"
+                    TickPlacement="BottomRight"
+                    Ticks="-80, -70, -60, -50, -40, -30, -20, -10, 0"
+                    Value="{Binding Path=SliderValue, ElementName=BaseUC, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, NotifyOnTargetUpdated=True}" />
+            </Grid>
+        </Border>
     </Border>
 </UserControl>
