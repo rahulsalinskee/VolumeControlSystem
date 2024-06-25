@@ -102,14 +102,8 @@ namespace VolumeControlSystem.UserControls
                 {
                     value = 0;
                 }
-
                 LocalSliderValue = value;
             }
-            //else if (EntryValueTextBox.Text != "-")
-            //{
-            //    LocalSliderValue = 0;
-            //}
-
         }
     }
 }

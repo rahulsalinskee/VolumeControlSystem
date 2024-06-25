@@ -28,7 +28,8 @@
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="*" />
-            <RowDefinition Height="8*" />
+            <RowDefinition Height="15*" />
+            <RowDefinition Height="*" />
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*" />
@@ -48,8 +49,7 @@
                 x:Name="BaseUC"
                 MinWidth="150"
                 Foreground="Red"
-                IsEnabled="{Binding ElementName=EnableDisable, Path=IsChecked}"
-                SliderValue="{Binding Path=SliderValue, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                SliderValue="{Binding Path=LocalSliderValue, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
         </StackPanel>
 
         <StackPanel
@@ -63,7 +63,6 @@
             <TextBox
                 x:Name="EntryValueTextBox"
                 DataObject.Pasting="IntegerTextBox_Pasting"
-                IsEnabled="{Binding ElementName=EnableDisable, Path=IsChecked}"
                 PreviewKeyDown="EntryValueTextBox_PreviewKeyDown"
                 PreviewTextInput="EntryValueTextBox_PreviewTextInput"
                 Style="{StaticResource TextEntryValueKey}"
@@ -71,7 +70,7 @@
                 TextChanged="EntryValueTextBox_TextChanged" />
         </StackPanel>
 
-        <StackPanel
+        <!--<StackPanel
             Name="EnableDisableToggleButtonStackPanel"
             Grid.Row="1"
             Grid.Column="2"
@@ -126,6 +125,6 @@
                 </ToggleButton.Template>
                 <TextBlock FontSize="10" Foreground="Black" />
             </ToggleButton>
-        </StackPanel>
+        </StackPanel>-->
     </Grid>
 </UserControl>

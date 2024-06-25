@@ -125,6 +125,7 @@
     </UserControl.Resources>
     <Border
         x:Name="BaseUserControlBorderOutLine"
+        Height="Auto"
         BorderBrush="#312f30"
         BorderThickness="2"
         CornerRadius="2">

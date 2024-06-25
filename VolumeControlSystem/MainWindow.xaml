@@ -12,7 +12,6 @@
     WindowState="Maximized"
     mc:Ignorable="d">
     <Grid>
-        <!--<enableDisable:EnableDisableUserControl x:Name="enableDisableUserControl" />-->
-        <enableDisable:TextEnterUserControl />
+        <enableDisable:EnableDisableUserControl x:Name="enableDisableUserControl" />
     </Grid>
 </Window>
