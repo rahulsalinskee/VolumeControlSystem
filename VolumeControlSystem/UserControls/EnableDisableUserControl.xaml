@@ -11,62 +11,6 @@
     d:DesignWidth="800"
     mc:Ignorable="d">
     <Grid>
-
-        <!--<ToggleButton
-            x:Name="EnableDisable"
-            Canvas.Left="416"
-            Canvas.Top="82"
-            Width="10"
-            Height="10"
-            HorizontalAlignment="Left"
-            VerticalAlignment="Top"
-            HorizontalContentAlignment="Center"
-            VerticalContentAlignment="Center"
-            Panel.ZIndex="1"
-            IsChecked="False">
-            <ToggleButton.Template>
-                <ControlTemplate TargetType="ToggleButton">
-                    <Grid>
-                        <Rectangle
-                            x:Name="Rectangle"
-                            Width="Auto"
-                            Height="Auto"
-                            Fill="Red"
-                            Stroke="Red"
-                            StrokeThickness="1" />
-                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
-                    </Grid>
-                    <ControlTemplate.Triggers>
-                        <Trigger Property="IsChecked" Value="True">
-                            <Setter TargetName="Rectangle" Property="Fill" Value="DeepSkyBlue" />
-                            <Setter TargetName="Rectangle" Property="Stroke" Value="DeepSkyBlue" />
-                            <Setter TargetName="Rectangle" Property="StrokeThickness" Value="1" />
-                        </Trigger>
-                    </ControlTemplate.Triggers>
-                </ControlTemplate>
-            </ToggleButton.Template>
-        </ToggleButton>-->
-
-        <!--<TextEntered:TextEnterUserControl
-            x:Name="textEnteredUserControl"
-            Canvas.Left="400"
-            Canvas.Top="20"
-            Height="430"
-            HorizontalAlignment="Left"
-            VerticalAlignment="Top"
-            HorizontalContentAlignment="Center">
-            <TextEntered:TextEnterUserControl.Style>
-                <Style TargetType="TextEntered:TextEnterUserControl">
-                    <Setter Property="IsEnabled" Value="False" />
-                    <Style.Triggers>
-                        <DataTrigger Binding="{Binding ElementName=EnableDisable, Path=IsChecked}" Value="True">
-                            <Setter Property="IsEnabled" Value="True" />
-                        </DataTrigger>
-                    </Style.Triggers>
-                </Style>
-            </TextEntered:TextEnterUserControl.Style>
-        </TextEntered:TextEnterUserControl>-->
-
         <Grid.RowDefinitions>
             <RowDefinition Height="*" />
             <RowDefinition Height="8*" />
