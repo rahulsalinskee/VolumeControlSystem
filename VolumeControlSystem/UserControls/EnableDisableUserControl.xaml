@@ -24,8 +24,8 @@
         <DockPanel
             Grid.Row="1"
             Grid.Column="1"
-            Width="10"
-            Height="10"
+            Width="15"
+            Height="15"
             Margin="15,75,0,0"
             HorizontalAlignment="Left"
             VerticalAlignment="Top">
